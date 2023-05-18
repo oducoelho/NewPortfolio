@@ -1,8 +1,9 @@
 import { HiArrowNarrowRight } from "react-icons/hi"
-import { HorizontalDivider } from "../../devider/horizontal"
-import { Link } from "../../link"
-import { SectionTitle } from "../../section-title"
+
 import { ProjectCard } from "./project-card"
+import { SectionTitle } from "@/app/components/section-title"
+import { HorizontalDivider } from "@/app/components/devider/horizontal"
+import { Link } from "@/app/components/link"
 
 export const HighLightedProjects = () => {
   return (
