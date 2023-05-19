@@ -2,25 +2,16 @@
 import { Button } from "@/app/components/button"
 import { TechBadge } from "@/app/components/tech-badge"
 import { HiArrowNarrowRight } from 'react-icons/hi'
-import { TbBrandGithub, TbBrandLinkedin, TbBrandWhatsapp } from 'react-icons/tb'
 import Image from "next/image"
+import { HomePageInfo } from "@/app/types/page-info"
+import { RichText } from "@/app/components/rich-text"
+import { CMSIcon } from "@/app/components/cms-icon"
 
-const MOCK_CONTACTS = [
-  {
-    url: 'https://github.com/oducoelho',
-    icon: <TbBrandGithub />
-  },
-  {
-    url: 'https://linkedin.com/',
-    icon: <TbBrandLinkedin />
-  },
-  {
-    url: 'https://whatsapp.com',
-    icon: <TbBrandWhatsapp />
-  },
-]
+type HeroSectionProps = {
+  homeInfo: HomePageInfo
+}
 
-export const HeroSection = () => {
+export const HeroSection = ({ homeInfo }: HeroSectionProps) => {
   const handleContact = () => {
     const contactSection = document.querySelector('#contact')
     if (contactSection) {
@@ -34,13 +25,13 @@ export const HeroSection = () => {
           <p className="font-mono text-emerald-400">Olá, meu nome é</p>
           <h2 className="text-4xl font-medium mt-2">Eduardo Coelho</h2>
 
-          <p className="text-gray-400 my-6 text-sm sm:text-base">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa molestias, dignissimos, harum maxime est iusto tenetur, exercitationem autem numquam nostrum dicta? Repudiandae in eum quas commodi, asperiores laudantium tempora eos.
-          </p>
+          <div className="text-gray-400 my-6 text-sm sm:text-base">
+            <RichText content={homeInfo.introduction.raw} />
+          </div>
 
           <div className="flex flex-wrap gap-x-2 gap-y-3 lg:max-w-[340px]">
-            {Array.from({ length: 5 }).map((_, index) => (
-              <TechBadge name='Next js' />
+            {homeInfo.technologies.map((tech) => (
+              <TechBadge name={tech.name} />
             ))}
           </div>
 
@@ -51,14 +42,14 @@ export const HeroSection = () => {
             </Button>
 
             <div className="text-2xl text-gray-600 flex items-center h-20 gap-3">
-              {MOCK_CONTACTS.map((contact, index) => (
+              {homeInfo.socials.map((contact, index) => (
                 <a
                   href={contact.url}
                   key={`contact-${index}`} 
                   target='_blank'
                   className="hover:text-gray-100 transition-colors"
                 >
-                  {contact.icon}
+                  <CMSIcon icon={contact.iconSvg} />
                 </a>
               ))}
             </div>
@@ -68,7 +59,7 @@ export const HeroSection = () => {
         <Image
           width={420}
           height={404}
-          src="/images/profile-pic.png"
+          src={homeInfo.profilePicture.url}
           alt="Foto de perfil de Eduardo Coelho" 
           className="w-[300px] h-[300px] lg:w-[420px] lg:h-[404px] mb-6 lg:mb-0 shadow-2xl rounded-lg object-cover"
         />
