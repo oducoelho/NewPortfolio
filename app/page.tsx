@@ -9,7 +9,8 @@ export default async function Home() {
       <HeroSection />
       <KnownTechs />
       <HighLightedProjects />
-      <WorkExperience />
+      <WorkExperience /> 
+      
     </>
   )
 }
