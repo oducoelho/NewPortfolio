@@ -27,13 +27,25 @@ const getPageData = async (): Promise<HomePageData> => {
         name
         startDate
       }
+      highlightProjects {
+        slug
+        thumbnail {
+          url
+        }
+        title
+        shortDescription
+        technologies {
+          name
+        }
+      }
+    }
     }
   }
 `
 
 return fetchHygraphQuery(
   query,
-  60 // * 60 * 24 // 1 day
+  60 * 60 * 24 // 1 day
 )
 }
 
@@ -44,8 +56,8 @@ export default async function Home() {
   return (
     <>
       <HeroSection homeInfo={pageData} />
-      <KnownTechs />
-      <HighLightedProjects />
+      <KnownTechs techs={pageData.knownTechs} />
+      <HighLightedProjects projects={pageData.highlightProjects}/>
       <WorkExperience />
     </>
   )
