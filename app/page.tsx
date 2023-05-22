@@ -39,7 +39,6 @@ const getPageData = async (): Promise<HomePageData> => {
         }
       }
     }
-    }
   }
 `
 
