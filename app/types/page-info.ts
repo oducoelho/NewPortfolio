@@ -16,7 +16,7 @@ export type HomePageInfo = {
     url: string;
   }
   socials: Social[];
-  knownTech:  KnownTech[]
+  knownTechs:  KnownTech[]
   highlightProjects: Project[]
 }
 export type ProjectPageData = {
