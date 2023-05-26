@@ -72,6 +72,8 @@ export default async function Home() {
 
   const { page: pageData, workExperiences } = await getPageData()
 
+  console.log(pageData.knownTechs)
+
   return (
     <>
       <HeroSection homeInfo={pageData} />
